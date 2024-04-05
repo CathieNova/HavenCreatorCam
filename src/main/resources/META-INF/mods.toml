@@ -1,23 +1,24 @@
 
 modLoader="javafml"
-loaderVersion="${loader_version_range}"
-license="${mod_license}"
+loaderVersion="[43,)"
+license="MIT"
 [[mods]]
 modId="havencreatorcam"
-version="${mod_version}"
-displayName="${mod_name}"
-authors="${mod_authors}"
-
+version="${file.jarVersion}"
+displayName="Haven Creator Cam"
+logoFile="examplemod.png"
+credits=""
+authors="CathieNova"
 description='''${mod_description}'''
 [[dependencies.havencreatorcam]]
-modId="forge"
-mandatory=true
-versionRange="${forge_version_range}"
-ordering="NONE"
-side="CLIENT"
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
+    ordering="NONE"
+    side="CLIENT"
 [[dependencies.havencreatorcam]]
-modId="minecraft"
-mandatory=true
-versionRange="${minecraft_version_range}"
-ordering="NONE"
-side="CLIENT"
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.20)"
+    ordering="NONE"
+    side="CLIENT"

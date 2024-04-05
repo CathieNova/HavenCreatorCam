@@ -2,8 +2,8 @@ package net.cathienova.havencreatorcam.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.cathienova.havencreatorcam.HavenCreatorCam;
-import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.settings.KeyConflictContext;
 
 public class ModKeybindings
 {
