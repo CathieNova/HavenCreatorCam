@@ -18,13 +18,13 @@ public class CreatorCamera
     public static class ClientForgeEvents {
 
         @SubscribeEvent
-        public static void onKeyInput(InputEvent.Key event)
+        public static void onKeyInput(InputEvent event)
         {
             Minecraft mc = Minecraft.getInstance();
 
             if (mc.player == null) return;
 
-            boolean newCreatorCamKeyDown = ModKeybindings.INSTANCE.creatorcam.isDown();
+            boolean newCreatorCamKeyDown = ModKeybindings.creatorCamKey.isDown();
 
             if (newCreatorCamKeyDown && !creatorCamKeyDown)
             {
@@ -39,7 +39,6 @@ public class CreatorCamera
                     mc.options.hideGui = false;
             }
 
-            // Update the key states for the next iteration
             creatorCamKeyDown = newCreatorCamKeyDown;
         }
 
