@@ -11,10 +11,10 @@ public class ModKeybindings
 
     private ModKeybindings() {}
 
-    private static final String CATEGORY = "key.categories." + HavenCreatorCam.MOD_ID;
+    private static final String CATEGORY = "key.categories.havencreatorcam";
 
     public final KeyMapping creatorcam = new KeyMapping(
-            "key." + HavenCreatorCam.MOD_ID + ".havencreatorcam",
+            "key.havencreatorcam.havencreatorcam",
             KeyConflictContext.IN_GAME,
             InputConstants.getKey(InputConstants.KEY_Z, -1),
             CATEGORY
