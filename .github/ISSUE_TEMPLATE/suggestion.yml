@@ -1,0 +1,14 @@
+name: Suggestion
+description: >-
+  Please use this template when you want to suggest a feature for HavenCreatorCam.
+title: '[Suggestion]: '
+body:
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggestion
+      placeholder: >-
+        Example:  
+        I would like to see a feature that allows me to zoom in on my face.
+    validations:
+      required: true
