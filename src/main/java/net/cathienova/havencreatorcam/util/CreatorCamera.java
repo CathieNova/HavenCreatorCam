@@ -1,20 +1,19 @@
 package net.cathienova.havencreatorcam.util;
 
 import net.cathienova.havencreatorcam.HavenCreatorCam;
-import net.cathienova.havencreatorcam.config.HavenConfig;
+import net.cathienova.havencreatorcam.config.CommonConfig;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.InputEvent;
 
-@Mod.EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class CreatorCamera
 {
     private static boolean creatorCamKeyDown = false;
 
-    @Mod.EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
     public static class ClientForgeEvents {
 
         @SubscribeEvent
@@ -29,13 +28,13 @@ public class CreatorCamera
             if (newCreatorCamKeyDown && !creatorCamKeyDown)
             {
                 CreatorCamView(mc);
-                if (HavenConfig.hideGUI)
+                if (CommonConfig.CONFIG.hideGUI.get())
                     mc.options.hideGui = true;
             }
             if (!newCreatorCamKeyDown && creatorCamKeyDown)
             {
                 mc.options.setCameraType(CameraType.FIRST_PERSON);
-                if (HavenConfig.hideGUI)
+                if (CommonConfig.CONFIG.hideGUI.get())
                     mc.options.hideGui = false;
             }
 
