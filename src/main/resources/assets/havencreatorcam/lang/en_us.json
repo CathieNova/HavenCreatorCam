@@ -1,4 +1,5 @@
 {
   "key.categories.havencreatorcam": "Haven Creator Camera",
-  "key.havencreatorcam.havencreatorcam": "Creator Camera"
+  "key.havencreatorcam.havenfrontcam": "Front View Camera",
+  "key.havencreatorcam.havenbackcam": "Back View Camera"
 }

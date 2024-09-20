@@ -13,6 +13,7 @@ public class ClientModHandler
     @SubscribeEvent
     public static void registerKeys(RegisterKeyMappingsEvent event)
     {
-        event.register(ModKeybindings.INSTANCE.creatorcam);
+        event.register(ModKeybindings.INSTANCE.frontcam);
+        event.register(ModKeybindings.INSTANCE.backcam);
     }
 }
