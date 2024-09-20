@@ -1,7 +1,6 @@
 package net.cathienova.havencreatorcam.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.cathienova.havencreatorcam.HavenCreatorCam;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraft.client.KeyMapping;
 
@@ -13,10 +12,17 @@ public class ModKeybindings
 
     private static final String CATEGORY = "key.categories.havencreatorcam";
 
-    public final KeyMapping creatorcam = new KeyMapping(
-            "key.havencreatorcam.havencreatorcam",
+    public final KeyMapping frontcam = new KeyMapping(
+            "key.havencreatorcam.havenfrontcam",
             KeyConflictContext.IN_GAME,
             InputConstants.getKey(InputConstants.KEY_Z, -1),
+            CATEGORY
+    );
+
+    public final KeyMapping backcam = new KeyMapping(
+            "key.havencreatorcam.havenbackcam",
+            KeyConflictContext.IN_GAME,
+            InputConstants.getKey(InputConstants.KEY_X, -1),
             CATEGORY
     );
 }

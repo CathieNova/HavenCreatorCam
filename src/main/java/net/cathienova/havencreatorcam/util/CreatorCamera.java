@@ -12,7 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class CreatorCamera
 {
-    private static boolean creatorCamKeyDown = false;
+    private static boolean frontCamKeyDown = false;
+    private static boolean backCamKeyDown = false;
 
     @Mod.EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
@@ -24,15 +25,31 @@ public class CreatorCamera
 
             if (mc.player == null) return;
 
-            boolean newCreatorCamKeyDown = ModKeybindings.INSTANCE.creatorcam.isDown();
+            boolean newFrontCamKeyDown = ModKeybindings.INSTANCE.frontcam.isDown();
+            boolean newBackCamKeyDown = ModKeybindings.INSTANCE.backcam.isDown();
 
-            if (newCreatorCamKeyDown && !creatorCamKeyDown)
+            // Add the front camera keybind
+            if (newFrontCamKeyDown && !frontCamKeyDown)
             {
-                CreatorCamView(mc);
+                FrontCamView(mc);
                 if (HavenConfig.hideGUI)
                     mc.options.hideGui = true;
             }
-            if (!newCreatorCamKeyDown && creatorCamKeyDown)
+            if (!newFrontCamKeyDown && frontCamKeyDown)
+            {
+                mc.options.setCameraType(CameraType.FIRST_PERSON);
+                if (HavenConfig.hideGUI)
+                    mc.options.hideGui = false;
+            }
+
+            // Add the back camera keybind
+            if (newBackCamKeyDown && !backCamKeyDown)
+            {
+                BackCamView(mc);
+                if (HavenConfig.hideGUI)
+                    mc.options.hideGui = true;
+            }
+            if (!newBackCamKeyDown && backCamKeyDown)
             {
                 mc.options.setCameraType(CameraType.FIRST_PERSON);
                 if (HavenConfig.hideGUI)
@@ -40,12 +57,19 @@ public class CreatorCamera
             }
 
             // Update the key states for the next iteration
-            creatorCamKeyDown = newCreatorCamKeyDown;
+            frontCamKeyDown = newFrontCamKeyDown;
+            backCamKeyDown = newBackCamKeyDown;
         }
 
-        private static void CreatorCamView(Minecraft mc) {
+        private static void FrontCamView(Minecraft mc) {
             if (mc.options.getCameraType().isFirstPerson() || mc.options.getCameraType() == CameraType.THIRD_PERSON_BACK) {
                 mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT);
+            }
+        }
+
+        private static void BackCamView(Minecraft mc) {
+            if (mc.options.getCameraType().isFirstPerson() || mc.options.getCameraType() == CameraType.THIRD_PERSON_FRONT) {
+                mc.options.setCameraType(CameraType.THIRD_PERSON_BACK);
             }
         }
     }
