@@ -3,13 +3,13 @@ modLoader="javafml"
 loaderVersion="[43,)"
 license="MIT"
 [[mods]]
-modId="havencreatorcam"
-version="${file.jarVersion}"
-displayName="Haven Creator Cam"
-logoFile="examplemod.png"
-credits=""
-authors="CathieNova"
-description='''${mod_description}'''
+    modId="havencreatorcam"
+    version="${file.jarVersion}"
+    displayName="Haven Creator Cam"
+    logoFile="examplemod.png"
+    credits=""
+    authors="CathieNova"
+    description='''${mod_description}'''
 [[dependencies.havencreatorcam]]
     modId="forge"
     mandatory=true
