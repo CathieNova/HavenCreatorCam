@@ -2,24 +2,25 @@ package net.cathienova.havencreatorcam;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.cathienova.havencreatorcam.config.HavenConfig;
+import net.minecraft.client.CameraType;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.CameraType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 
-@EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class HavenCreatorClient {
+    private static final KeyMapping.Category CREATOR_CAM_CATEGORY = new KeyMapping.Category(
+            Identifier.fromNamespaceAndPath(HavenCreatorCam.MOD_ID, "creator_camera")
+    );
+
     public static final KeyMapping CREATOR_CAM_KEY_FRONT = new KeyMapping(
             "key.havencreatorcam.creatorcam_front",
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             InputConstants.KEY_Z,
-            "key.categories.havencreatorcam"
+            CREATOR_CAM_CATEGORY
     );
 
     public static final KeyMapping CREATOR_CAM_KEY_BACK = new KeyMapping(
@@ -27,21 +28,19 @@ public class HavenCreatorClient {
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             InputConstants.KEY_X,
-            "key.categories.havencreatorcam"
+            CREATOR_CAM_CATEGORY
     );
 
-    @SubscribeEvent
     public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
+        event.registerCategory(CREATOR_CAM_CATEGORY);
         event.register(CREATOR_CAM_KEY_FRONT);
         event.register(CREATOR_CAM_KEY_BACK);
     }
 
-    @EventBusSubscriber(modid = HavenCreatorCam.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
     public static class GameEventHandler {
         private static boolean creatorCamFrontActive = false;
         private static boolean creatorCamBackActive = false;
 
-        @SubscribeEvent
         public static void onClientTick(ClientTickEvent.Post event) {
             Minecraft mc = Minecraft.getInstance();
             if (mc.player == null) return;
